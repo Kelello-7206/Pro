@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./index.css";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Favorite from "./components/Favorite";
-import Preview from "./components/Preview";
-import History from "./components/History";
-import { createClient } from "@supabase/supabase-js";
+import React, { useEffect, useState } from 'react';
+import './index.css';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Favorite from './components/Favorite';
+import Preview from './components/Preview';
+import History from './components/History';
+import { createClient } from '@supabase/supabase-js';
 
 function App() {
   const supabaseUrl = "https://fwsulwcbmsvkhpbhdokp.supabase.co";
