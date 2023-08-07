@@ -12,7 +12,6 @@ const handleRemoveFromFavorites = (episode) => {
         <ul className="favorite-list">
           {favorites.map((episode) => (
             <li key={episode.id} className="favorite-item">
-              <h4>Season: {episode.season}</h4>
               <h4>Title: {episode.title}</h4>
               <h4>Episode: {episode.episode}</h4>
               <p>Description: {episode.description}</p>

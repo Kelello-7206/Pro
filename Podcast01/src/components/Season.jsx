@@ -21,7 +21,6 @@ const Season = ({ season, selectedSeason, onSeasonClick, onFavoriteClick }) => {
             <li key={episodeIndex}>
               <EpisodeButton
                 episode={episode}
-                onEpisodeClick={() => {}} // Dummy function, you can replace it with your actual functionality
                 onFavoriteClick={onFavoriteClick}
               />
             </li>

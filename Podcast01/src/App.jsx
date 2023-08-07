@@ -57,6 +57,7 @@ function App() {
     <div>
       <Navbar onNavigate={handleNavigation} />
       <br />
+      <br />
       <div className="content">
         {currentPage === "home" && (
           <Home

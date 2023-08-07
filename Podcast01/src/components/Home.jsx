@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import '../index.css'
 import axios from 'axios';
-import Search from './Search'; // Import the Search component
+import Search from './Search'; 
+import Carousel from './Carousel'; 
+
 
 const Home = ({ onPodcastClick, selectedPodcast }) => {
   const [showPodcast, setPodcast] = useState([]);
@@ -62,12 +65,14 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
 
   return (
     <div className="home-container">
-      <h1>All Shows</h1>
+  
       <Search data={showPodcast} updateData={updateData} />
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
+          <Carousel items={showPodcast.map((show) => ({ id: show.id, title: show.title, imageUrl: show.image }))} />
+          <br />
           <ul className="show-list">
             {showPodcast.map((show) => (
               <li key={show.id} onClick={() => handlePodcastClick(show)}>
