@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const EpisodeButton = ({ episode, onEpisodeClick, onFavoriteClick }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleEpisodeClick = () => {
     setShowDetails((prevState) => !prevState);
@@ -9,6 +10,7 @@ const EpisodeButton = ({ episode, onEpisodeClick, onFavoriteClick }) => {
   };
 
   const handleFavoriteClick = () => {
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
     onFavoriteClick(episode);
   };
 
@@ -29,7 +31,9 @@ const EpisodeButton = ({ episode, onEpisodeClick, onFavoriteClick }) => {
               <source src={episode.file} type="audio/mp3" />
             </audio>
           </div>
-          <button onClick={handleFavoriteClick}>Favorite</button>
+          <button onClick={handleFavoriteClick}>
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+          </button>
         </>
       )}
     </div>

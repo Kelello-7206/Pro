@@ -30,11 +30,9 @@ const Search = ({ data, updateData }) => {
     <div className="search-container">
       <input type="text" value={searchText} onChange={handleSearch} placeholder="Search by title" />
       <button onClick={handleSearchClick}>Search</button>
-      {/* Render the sorted and filtered data */}
       <ul className="show-list">
         {filteredData.map((show) => (
           <li key={show.id}>
-            {/* Your show item UI here */}
           </li>
         ))}
       </ul>

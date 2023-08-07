@@ -5,14 +5,8 @@ import Home from './components/Home';
 import Favorite from './components/Favorite';
 import Preview from './components/Preview';
 import History from './components/History';
-import { createClient } from '@supabase/supabase-js';
 
 function App() {
-  const supabaseUrl = "https://fwsulwcbmsvkhpbhdokp.supabase.co";
-  const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3Vsd2NibXN2a2hwYmhkb2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExNTk3NTcsImV4cCI6MjAwNjczNTc1N30.pGzsnq9JfKW7yEgXbLxrF7etAIiK8qrleNSCRg4xcxM";
-  const supabase = createClient(supabaseUrl, supabaseKey);
-
   const [currentPage, setCurrentPage] = useState(
     localStorage.getItem("currentPage") || "home"
   );
@@ -36,19 +30,6 @@ function App() {
     }
   };
 
-  // Define setLastListened if used
-  const [setLastListened, setSetLastListened] = useState({});
-
-  const handleEpisodeProgress = (episode, currentTime) => {
-    if (currentTime >= episode.duration - 10) {
-      setSetLastListened({
-        show: episode.show,
-        episode: episode.title,
-        progress: currentTime,
-      });
-    }
-  };
-
   // Define handleFavoriteClick function to handle favoriting episodes
   const handleFavoriteClick = (episode) => {
     if (!favorites.some((fav) => fav.id === episode.id)) {
@@ -68,7 +49,7 @@ function App() {
   // Define removeFromFavorites function in the App component
   const removeFromFavorites = (episode) => {
     setFavorites((prevFavorites) =>
-      prevFavorites.filter((favEpisode) => favEpisode !== episode)
+      prevFavorites.filter((favEpisode) => favEpisode.id !== episode.id)
     );
   };
 
@@ -86,7 +67,6 @@ function App() {
         {currentPage === "favorite" && (
           <Favorite
             favorites={favorites}
-            setFavorites={setFavorites}
             removeFromFavorites={removeFromFavorites}
           />
         )}
@@ -95,7 +75,6 @@ function App() {
             podcastId={selectedPodcast?.id}
             onFavoriteClick={handleFavoriteClick}
             onEpisodeComplete={handleEpisodeComplete}
-            onEpisodeProgress={handleEpisodeProgress}
           />
         )}
         {currentPage === "history" && <History />}
